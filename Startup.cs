@@ -7,6 +7,10 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.Webpack;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.EntityFrameworkCore.SqlServer;
+using Microsoft.EntityFrameworkCore;
+using  aspcore.Presistence;
+
 
 namespace aspcore
 {
@@ -22,6 +26,9 @@ namespace aspcore
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //DB Context
+            services.AddDbContext<TaskContext>(options => options.UseSqlServer("Server=SALIK-PC\\SQLEXPRESS; Integrated Security=SSPI; Database=aspcore;"));
+
             services.AddMvc();
         }
 
